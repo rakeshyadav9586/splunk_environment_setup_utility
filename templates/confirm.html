@@ -1,0 +1,92 @@
+<!-- templates/index.html -->
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <title>Let's be a more productive</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .column {
+      flex: 50%;
+      padding: 10px;
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <script type="text/javascript">
+    function preventBack() {
+      window.history.forward();
+    }
+    setTimeout("preventBack()");
+    window.onunload = function () {
+      null
+    };
+
+  </script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="column">
+      <b>
+        <font color="red">Do not click on the "Run Script" button if the mentioned IP Address(s) does not belong to you.
+        </font>
+      </b>
+      <button onclick="window.location.href ='/';">Go Back</button>
+      <form action="/result" method="POST" onsubmit="return checkForm(this);">
+        <h5>Verify IP Address and resolve if any error display</h5>
+        <pre>{{ readIP }}</pre>
+        <br>
+        <pre>{{app_file}}</pre>
+        <input type="submit" name="runButton" value="RunScript">
+      </form>
+      <p>Average time(in second) taken to setup below configuration</p>
+      <p>App
+        install/upgrade/reinstall&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45
+      </p>
+      <p>Splunk
+        install/upgrade/reinstall&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;150
+      </p>
+      <p>Distributed
+        setup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10
+      </p>
+      <p>Cluster splunk install/upgrade/reinstall&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;300</p>
+      <p>Cluster
+        setup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200
+      </p>
+      <p>Cluster: Add-on/App
+        push&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15
+      </p>
+    </div>
+    <div class="column">
+      <iframe src="logframe" id="output" height="135%" width="100%">
+      </iframe>
+
+    </div>
+    <script type="text/javascript">
+
+      function checkForm(form) {
+        form.runButton.disabled = true;
+        return true;
+      }
+
+    </script>
+    <!-- <div class="footer">
+      <p align="right">Developed by: Rakesh Yadav &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp</p>
+      <P align="right">QA Engineer &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp</p>
+    </div> -->
+</body>
+
+</html>

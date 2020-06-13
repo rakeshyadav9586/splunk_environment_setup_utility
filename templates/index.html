@@ -1,0 +1,380 @@
+<!-- templates/index.html -->
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <title>Let's be a more productive</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .column {
+      flex: 50%;
+      padding: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="row">
+    <div class="column">
+      <pr>********************Click on the respective button for setup********************</pr>
+      <br>
+      <br>
+      <button type="button" onclick="show('id1');">App Install/Upgrade/Reinstall</button>
+      <button type="button" onclick="show('id2');">Splunk Install/Upgrade/Reinstall</button>
+      <button type="button" onclick="show('id3');">Distributed Setup/Remove</button>
+      <br>
+      <br>
+      <button type="button" onclick="show('id4');">Cluster Splunk Install/Upgrade/Reinstall</button>
+      <button type="button" onclick="show('id5');">Cluster Setup/Resetup</button>
+      <button type="button" onclick="show('id6');">Cluster Add-on/App Push</button>
+      <br>
+      <br>
+
+      <form action="/confirm" method="POST" enctype="multipart/form-data">
+        <div id="id1" style="display:none">
+          <input type="radio" name="app" value="Install"> Install/Upgrade
+          <input type="radio" name="app" value="Reinstall"> Reinstall &nbsp;
+          <input type="password" name="pwd" placeholder="Password (not admin)" required>
+          &nbsp;
+          <input type="file" name="file" id="file" autocomplete="off" required />
+          <span id="fileerror" name="fileerror" style="color: red;"></span>
+          <br><br>
+
+          <input type="hidden" id="S1" name="setup" value="">
+          <br>
+          IP Address 1:
+          <input name="A1" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          IP Address 2:
+          <input name="A2" placeholder="Enter valid IP Address">
+          <br><br><br>
+          IP Address 3:
+          <input name="A3" placeholder="Enter valid IP Address">
+          <br><br><br>
+          IP Address 4:
+          <input name="A4" placeholder="Enter valid IP Address">
+          <br><br><br>
+          IP Address 5:
+          <input name="A5" placeholder="Enter valid IP Address">
+          <br><br><br>
+          IP Address 6:
+          <input name="A6" placeholder="Enter valid IP Address">
+          <br><br><br>
+          IP Address 7:
+          <input name="A7" placeholder="Enter valid IP Address">
+          <br><br><br>
+          IP Address 8:
+          <input name="A8" placeholder="Enter valid IP Address">
+          <br><br><br>
+          <input type="submit" name="validateButton" value="Validate" onclick="setup_value('S1');">
+        </div>
+      </form>
+      <form action="/confirm" method="POST">
+        <div id="id2" style="display:none">
+          <input type="radio" name="splunk" value="Install"> Install/Upgrade
+          <input type="radio" name="splunk" value="Reinstall"> Reinstall
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="password" name="pwd" placeholder="Password (not admin)" required>
+          <br><br>
+
+          <input type="hidden" name="setup" id="S2" value="">
+          IP Address 1:
+          <input name="B1" placeholder="Enter valid IP Address" required> &nbsp;
+          <select name="B1_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br><br>
+          IP Address 2:
+          <input name="B2" placeholder="Enter valid IP Address"> &nbsp;
+          <select name="B2_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br><br>
+          IP Address 3:
+          <input name="B3" placeholder="Enter valid IP Address"> &nbsp;
+          <select name="B3_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br><br>
+          IP Address 4:
+          <input name="B4" placeholder="Enter valid IP Address"> &nbsp;
+          <select name="B4_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br><br>
+          IP Address 5:
+          <input name="B5" placeholder="Enter valid IP Address"> &nbsp;
+          <select name="B5_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br><br>
+          IP Address 6:
+          <input name="B6" placeholder="Enter valid IP Address"> &nbsp;
+          <select name="B6_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br><br>
+          IP Address 7:
+          <input name="B7" placeholder="Enter valid IP Address"> &nbsp;
+          <select name="B7_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br><br>
+          IP Address 8:
+          <input name="B8" placeholder="Enter valid IP Address"> &nbsp;
+          <select name="B8_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br><br>
+          <input type="submit" name="validateButton" value="Validate" onclick="setup_value('S2');">
+        </div>
+      </form>
+      <form action="/confirm" method="POST">
+        <div id="id3" style="display:none">
+          <input type="hidden" name="setup" id="S3" value="">
+          <input type="radio" name="dist" value="Setup"> Setup
+          <input type="radio" name="dist" value="Remove"> Remove &nbsp;&nbsp;
+          <input type="password" name="pwd" placeholder="Password (not admin)" required>
+          &nbsp;
+          <br><br>
+          Search Head:&nbsp;&nbsp;&nbsp;
+          <input name="C1" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 1:
+          <input name="C2" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 2:
+          <input name="C3" placeholder="Enter valid IP Address">
+          <br><br><br>
+          Indexer/Peer 3:
+          <input name="C4" placeholder="Enter valid IP Address">
+          <br><br><br>
+          Indexer/Peer 4:
+          <input name="C5" placeholder="Enter valid IP Address">
+          <br><br><br>
+          Indexer/Peer 5:
+          <input name="C6" placeholder="Enter valid IP Address">
+          <br><br><br>
+          Indexer/Peer 6:
+          <input name="C7" placeholder="Enter valid IP Address">
+          <br><br><br>
+          Indexer/Peer 7:
+          <input name="C8" placeholder="Enter valid IP Address">
+          <br><br><br>
+          <input type="submit" name="validateButton" value="Validate" onclick="setup_value('S3');">
+        </div>
+      </form>
+
+      <form action="/confirm" method="POST">
+        <div id="id4" style="display:none">
+          <input type="hidden" name="setup" id="S4" value="">
+          <input type="radio" name="splunk" value="Install"> Install/Upgrade
+          <input type="radio" name="splunk" value="Reinstall"> Reinstall&nbsp;
+          <input type="password" name="pwd" placeholder="Password (not admin)" required>
+          &nbsp;
+          <select name="D_version">
+            {% for version in splunks %}
+            <option value="{{version}}" SELECTED>{{version}}</option>"
+            {% endfor %}
+          </select>
+          <br><br>
+          Cluster Master:
+          <input name="D1" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Deployer:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input name="D2" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 1:&nbsp
+          <input name="D3" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 2:&nbsp
+          <input name="D4" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 3:&nbsp
+          <input name="D5" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 1:&nbsp
+          <input name="D6" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 2:&nbsp
+          <input name="D7" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 3:&nbsp
+          <input name="D8" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          <input type="submit" name="validateButton" value="Validate" onclick="setup_value('S4');">
+        </div>
+      </form>
+
+      <form action="/confirm" method="POST">
+        <div id="id5" style="display:none">
+          <input type="hidden" name="setup" id="S5" value="">
+          Password:&nbsp
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="password" name="pwd" placeholder="not admin ;-)" required>
+          <br><br><br>
+          Cluster Master:&nbsp
+          <input name="E1" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Deployer:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input name="E2" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 1:&nbsp
+          <input name="E3" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 2:&nbsp
+          <input name="E4" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 3:&nbsp
+          <input name="E5" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 1:&nbsp
+          <input name="E6" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 2:&nbsp
+          <input name="E7" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 3:&nbsp
+          <input name="E8" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          <input type="submit" name="validateButton" value="Validate" onclick="setup_value('S5');">
+        </div>
+      </form>
+
+      <form action="/confirm" method="POST" enctype="multipart/form-data">
+        <div id="id6" style="display:none">
+          <input type="hidden" name="setup" id="S6" value="">
+          Password:&nbsp
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="password" name="pwd" placeholder="not admin ;-)" required>
+          <br><br><br>
+          Cluster Master:&nbsp
+          <input name="F1" placeholder="Enter valid IP Address" required> &nbsp;
+          <input type="file" name="file1" autocomplete="off" />
+          <span id="fileerror1" name="fileerror1" style="color: red;"></span>
+          <br><br><br>
+          Deployer:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input name="F2" placeholder="Enter valid IP Address" required> &nbsp;
+          <input type="file" name="file2" autocomplete="off" required />
+          <span id="fileerror2" name="fileerror2" style="color: red;"></span>
+          <br><br><br>
+          Indexer/Peer 1:&nbsp
+          <input name="F3" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 2:&nbsp
+          <input name="F4" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Indexer/Peer 3:&nbsp
+          <input name="F5" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 1:&nbsp
+          <input name="F6" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 2:&nbsp
+          <input name="F7" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          Search Head 3:&nbsp
+          <input name="F8" placeholder="Enter valid IP Address" required>
+          <br><br><br>
+          <input type="submit" name="validateButton" value="Validate" onclick="setup_value('S6');">
+        </div>
+      </form>
+    </div>
+
+    <div class="column">
+      {{ total_user }}
+      <br>
+      {{ script_count }}
+      <h4>Prerequisites:</h4>
+      <p>IP Address of the virtual machine must be Linux OS and powered on</p>
+      <p>Username must be 'root' & password must be same for given IP(s)</p>
+      <p>Password should not be a 'admin'</p>
+      <p>To change password use command: 'sudo passwd root'</p>
+      <p>Carefully enter the new password if you forget then your VM OS need to be reinstall</p>
+      <h4>Note:</h4>
+      <p>Distributed environment: Search Head and at least one Indexer/Peer IP address Required</p>
+      <p>Cluster environment: IP address Required for all the fields</p>
+      <p>Splunk Installation/Upgrade: Verify existing Splunk version first then select upgrade version of splunk</p>
+      <p>Duplicate and Invalid IP address will not be considered</p>
+      <p>App/Add-on file size and file extension must be &lt 50MB and .spl .tgz</p>
+    </div>
+
+    </form>
+
+
+    <script type="text/javascript">
+      function show(elementId) {
+        document.getElementById("id1").style.display = "none";
+        document.getElementById("id2").style.display = "none";
+        document.getElementById("id3").style.display = "none";
+        document.getElementById("id4").style.display = "none";
+        document.getElementById("id5").style.display = "none";
+        document.getElementById("id6").style.display = "none";
+        document.getElementById(elementId).style.display = "block";
+      }
+      function setup_value(setup_id) {
+        document.getElementById(setup_id).value = setup_id;
+
+        var upload = document.getElementById("file");
+        if (upload.files[0].size > 51380224) {
+          document.getElementById("fileerror").innerHTML = "The file size is more than 49MB";
+        }
+        var fileInput = document.getElementById("file");
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.spl|\.tgz)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+          document.getElementById("fileerror").innerHTML = "Only .tgz & .spl extensions allowed.";
+        }
+      }
+      var app = document.getElementsByName('app');
+      for (i = 0; i < app.length; i++) {
+        if (app[i].value == "Reinstall") {
+          app[i].checked = true;
+        }
+      }
+      var dist = document.getElementsByName('dist');
+      for (i = 0; i < dist.length; i++) {
+        if (dist[i].value == "Setup") {
+          dist[i].checked = true;
+        }
+      }
+      var splunk = document.getElementsByName('splunk');
+      for (i = 0; i < splunk.length; i++) {
+        if (splunk[i].value == "Reinstall") {
+          splunk[i].checked = true;
+        }
+      }
+      function checkForm(form) {
+        form.validateButton.disabled = true;
+        return true;
+      }
+
+    </script>
+
+</body>
+
+</html>

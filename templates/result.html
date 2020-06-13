@@ -1,0 +1,55 @@
+<!-- templates/index.html -->
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <title>Let's be a more productive</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .column {
+      flex: 50%;
+      padding: 10px;
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      document.onkeydown = function (e) {
+        return (e.which || e.keyCode) != 116;
+      };
+    }  
+  </script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="column">
+      <h4>Your request has served successfully! </h4>
+
+      For a new request click <a href="http://10.0.0.1:8000/">Home</a>
+
+    </div>
+    <div class="column">
+      <h4>Check the below log for more information.</h4>
+      <pre>{{ readlog }}</pre>
+    </div>
+    <div class="footer">
+      <p align="right">Developed by: Rakesh Yadav &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp</p>
+      <P align="right">QA Engineer &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp</p>
+    </div>
+</body>
+
+</html>
